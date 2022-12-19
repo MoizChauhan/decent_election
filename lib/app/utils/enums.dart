@@ -1,0 +1,1 @@
+enum ScreenOps { edit, add }

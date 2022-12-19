@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100505650015",
+    "project_id": "decent-election-123",
+    "storage_bucket": "decent-election-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100505650015:android:618e144295ebf1e6462cea",
+        "android_client_info": {
+          "package_name": "com.example.decent_election"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100505650015-hmm8s7b29os262i6kcj8deu72n3gu7c5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgFLUI__JVYfxDIU9HNaOnYpax7BXpD7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100505650015-hmm8s7b29os262i6kcj8deu72n3gu7c5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
