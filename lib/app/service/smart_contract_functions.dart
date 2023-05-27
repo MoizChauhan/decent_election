@@ -82,8 +82,10 @@ Future vote(int candidateIndex, Web3Client ethClient) async {
     var response = await callFunction("vote", [BigInt.from(candidateIndex)],
         ethClient, getPrefValue(Keys.PRIVATEKEY));
     print("Vote counted successfully");
+    setPrefValue(Keys.VOTED, "done");
     return response;
   } catch (e) {
+    setPrefValue(Keys.VOTED, "done");
     print(e);
     longToastMessage("You have casted you vote wait for result!!");
   }

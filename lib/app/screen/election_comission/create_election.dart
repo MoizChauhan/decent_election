@@ -163,89 +163,89 @@ class _CreateElectionState extends State<CreateElection> {
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 28),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AppTextField(
-                        controller: addCandidateController,
-                        lableText: 'Enter Candidate Name',
-                      ),
-                    ),
-                    AppButtonOutlined(
-                      onPressed: () {
-                        addCandidate(addCandidateController.text,
-                            ContractLinking.ethClient!);
-                        addCandidateController.text = "";
-                        setState(() {});
-                      },
-                      buttonText: 'Add Candidate',
-                    )
-                  ],
-                ),
-              ),
               if (ScreenOps.edit == widget.screenOps)
-                if (ScreenOps.edit == widget.screenOps)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 38.0),
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: AppColors.black),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Container(
-                        height: Get.height * 0.25,
-                        decoration: BoxDecoration(),
-                        child: FutureBuilder<List>(
-                          future: getCandidatesNum(ContractLinking.ethClient!),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return snapshot.data != null
-                                  ? SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          for (int i = 0;
-                                              i < snapshot.data![0].toInt();
-                                              i++)
-                                            FutureBuilder<List>(
-                                                future: candidateInfo(i,
-                                                    ContractLinking.ethClient!),
-                                                builder: (context,
-                                                    candidatesnapshot) {
-                                                  if (candidatesnapshot
-                                                          .connectionState ==
-                                                      ConnectionState.waiting) {
-                                                    return Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return ListTile(
-                                                      title: Text(
-                                                          'Name: ${candidatesnapshot.data![0][0]}'),
-                                                      subtitle: Text(
-                                                          'Votes: ${candidatesnapshot.data![0][1]}'),
-                                                    );
-                                                  }
-                                                })
-                                        ],
-                                      ),
-                                    )
-                                  : Center(child: Text("No Data available"));
-                            }
-                          },
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 28),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: AppTextField(
+                          controller: addCandidateController,
+                          lableText: 'Enter Candidate Name',
                         ),
+                      ),
+                      AppButtonOutlined(
+                        onPressed: () {
+                          addCandidate(addCandidateController.text,
+                              ContractLinking.ethClient!);
+                          addCandidateController.text = "";
+                          setState(() {});
+                        },
+                        buttonText: 'Add Candidate',
+                      )
+                    ],
+                  ),
+                ),
+              if (ScreenOps.edit == widget.screenOps)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: AppColors.black),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Container(
+                      height: Get.height * 0.25,
+                      decoration: BoxDecoration(),
+                      child: FutureBuilder<List>(
+                        future: getCandidatesNum(ContractLinking.ethClient!),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return snapshot.data != null
+                                ? SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        for (int i = 0;
+                                            i < snapshot.data![0].toInt();
+                                            i++)
+                                          FutureBuilder<List>(
+                                              future: candidateInfo(i,
+                                                  ContractLinking.ethClient!),
+                                              builder:
+                                                  (context, candidatesnapshot) {
+                                                if (candidatesnapshot
+                                                        .connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListTile(
+                                                    title: Text(
+                                                        'Name: ${candidatesnapshot.data![0][0]}'),
+                                                    subtitle: Text(
+                                                        'Votes: ${candidatesnapshot.data![0][1]}'),
+                                                  );
+                                                }
+                                              })
+                                      ],
+                                    ),
+                                  )
+                                : Center(child: Text("No Data available"));
+                          }
+                        },
                       ),
                     ),
                   ),
+                ),
 
               SizedBox(height: 15),
               if (ScreenOps.edit == widget.screenOps)
@@ -505,6 +505,7 @@ class _CreateElectionState extends State<CreateElection> {
         contractAddress: contractAddressController.text,
         voters: []);
     try {
+      setPrefValue(Keys.CONTRACT, electionModel.contractAddress);
       await startElection(
           electionModel.electionName, ContractLinking.ethClient!);
       await FirebaseService.createElection(electionModel: electionModel);

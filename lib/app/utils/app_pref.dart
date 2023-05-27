@@ -20,6 +20,7 @@ String getPrefValue(String key) {
 class Keys {
   static String AUTH_TOKEN = "AUTH_TOKEN";
   static String CONTRACT = "CONTRACT";
+  static String VOTED = "VOTED";
   static String USERNAME = "USERNAME";
   static String PRIVATEKEY = "PRIVATEKEY";
   static String WALLETADDRESS = "WALLETADDRESS";

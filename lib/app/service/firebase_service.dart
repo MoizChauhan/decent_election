@@ -171,6 +171,7 @@ class FirebaseService {
     await setPrefValue(Keys.USERNAME, "");
     await setPrefValue(Keys.ECNAME, "");
     await setPrefValue(Keys.ELNAME, "");
+    await setPrefValue(Keys.VOTED, "");
 
     AppRoutes.navigateOffLogin();
   }
